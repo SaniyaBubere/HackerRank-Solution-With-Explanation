@@ -20,19 +20,16 @@ Not A Triangle: The given values of A, B, and C don't form a triangle.
 
 Solution:
 
--- Start of the SELECT statement with CASE expression
-SELECT CASE 
-    -- First condition: Check if any two sides of the triangle sum to less than or equal to the length of the third side
-    WHEN A+B <= C OR A+C <= B OR B+C <= A THEN "Not A Triangle"
-    
-    -- Second condition: Check if all three sides are equal, indicating an Equilateral triangle
-    WHEN A=B AND B=C THEN "Equilateral"
-    
-    -- Third condition: Check if at least two sides are equal, indicating an Isosceles triangle
-    WHEN A=B OR B=C OR C=A THEN "Isosceles"
-    
-    -- If none of the above conditions are met, it's a Scalene triangle with all sides different
-    ELSE 'Scalene'
-END
--- End of the CASE expression
-FROM TRIANGLES;  -- Data is retrieved from the TRIANGLES table to perform the classification.
+SELECT CASE
+-- This line selects the CASE statement.
+WHEN A+B <= C OR A+C <= B OR B+C <= A THEN 'Not A Triangle'
+-- This line checks if the sum of any two sides is less than the third side. If it is, then the triangle is not a triangle.
+WHEN A=B AND B=C THEN 'Equilateral'
+-- This line checks if all three sides of the triangle are equal. If they are, then the triangle is equilateral.
+WHEN A=B OR B=C OR C=A THEN 'Isosceles'
+-- This line checks if any two sides of the triangle are equal. If they are, then the triangle is isosceles.
+ELSE 'Scalene'
+-- This line is the default case. If the triangle is not equilateral or isosceles, then it is scalene.
+END FROM TRIANGLES;
+-- This line specifies the table that the query should be run on.
+
